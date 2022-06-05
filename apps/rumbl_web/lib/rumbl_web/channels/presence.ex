@@ -5,8 +5,8 @@ defmodule RumblWeb.Presence do
   See the [`Phoenix.Presence`](https://hexdocs.pm/phoenix/Phoenix.Presence.html)
   docs for more details.
   """
-  use Phoenix.Presence, otp_app: :rumbl,
-                        pubsub_server: Rumbl.PubSub
+  use Phoenix.Presence, otp_app: :rumbl_web,
+                        pubsub_server: RumblWeb.PubSub
 
   def fetch(_topic, entries) do
     users =
