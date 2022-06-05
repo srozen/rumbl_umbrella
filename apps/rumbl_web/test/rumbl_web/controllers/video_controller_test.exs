@@ -82,7 +82,8 @@ defmodule RumblWeb.VideoControllerTest do
     test "update redirects when data is valid", %{conn: conn, user: user} do
       video = video_fixture(user)
       conn = put(conn, Routes.video_path(conn, :update, video), video: @update_attrs)
-      assert redirected_to(conn) == Routes.video_path(conn, :show, video)
+      updated_video = Multimedia.get_video!(video.id)
+      assert redirected_to(conn) == Routes.video_path(conn, :show, updated_video)
 
       conn = get(conn, Routes.video_path(conn, :show, video))
       assert html_response(conn, 200) =~ @update_attrs.description

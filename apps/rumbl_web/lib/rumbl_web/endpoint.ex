@@ -1,5 +1,5 @@
 defmodule RumblWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :rumbl
+  use Phoenix.Endpoint, otp_app: :rumbl_web
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
