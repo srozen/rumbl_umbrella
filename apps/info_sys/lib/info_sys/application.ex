@@ -8,8 +8,8 @@ defmodule InfoSys.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      # Starts a worker by calling: InfoSys.Worker.start_link(arg)
-      {InfoSys.Counter, 5}
+      InfoSys.Cache,
+      {Task.Supervisor, name: InfoSys.TaskSupervisor}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

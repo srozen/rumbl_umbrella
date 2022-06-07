@@ -33,6 +33,9 @@ defmodule InfoSys.Counter do
   end
 
   @impl true
+  def handle_info(:tick, val) when val <= 0, do: raise "boom!"
+
+  @impl true
   def handle_info(:tick, val) do
     IO.puts("tick #{val}")
     Process.send_after(self(), :tick, 1000)
