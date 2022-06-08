@@ -31,3 +31,7 @@ config :phoenix, :plug_init_mode, :runtime
 
 # Only in tests, remove the complexity from the password hashing algorithm
 config :bcrypt_elixir, :log_rounds, 1
+
+config :info_sys, :wolfram,
+  app_id: "1234",
+  http_client: InfoSysTest.HTTPClient
