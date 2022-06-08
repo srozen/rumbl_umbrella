@@ -49,6 +49,7 @@ defmodule RumblWeb.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.18"},
       {:rumbl, in_umbrella: true},
+      {:info_sys, in_umbrella: true},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"}
     ]

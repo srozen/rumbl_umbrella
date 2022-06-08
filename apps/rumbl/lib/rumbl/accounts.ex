@@ -35,6 +35,23 @@ defmodule Rumbl.Accounts do
   end
 
   @doc """
+  Gets a user by given parameter and value.
+  Be cautious not to allow user to define the attribute.
+
+  ## Examples
+
+      iex> get_user_by!(email: "foo@example.com")
+      %User{}
+
+      iex> get_user_by!(name: "unknown")
+      nil
+
+  """
+  def get_user_by!(params) do
+    Repo.get_by!(User, params)
+  end
+
+  @doc """
   Gets a user by email and password.
 
   ## Examples
@@ -89,6 +106,12 @@ defmodule Rumbl.Accounts do
   def register_user(attrs) do
     %User{}
     |> User.registration_changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def create_user(attrs) do
+    %User{}
+    |> User.creation_changeset(attrs)
     |> Repo.insert()
   end
 

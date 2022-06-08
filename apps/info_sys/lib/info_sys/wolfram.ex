@@ -11,14 +11,13 @@ defmodule InfoSys.Wolfram do
 
   @impl true
   def compute(query_str, _opts) do
-    {:ok, {_request, _metadata, xml_payload}} = fetch_xml(query_str)
-
-    xml_payload
+    query_str
+    |> fetch_xml()
     |> xpath(~x"/queryresult/pod[contains(@title, 'Result') or contains(@title, 'Definitions')]/subpod/plaintext/text()")
     |> build_results()
   end
 
-  defp built_results(nil), do: []
+  defp build_results(nil), do: []
 
   defp build_results(answer) do
     [%Result{backend: __MODULE__, score: 95, text: to_string(answer)}]
@@ -26,6 +25,8 @@ defmodule InfoSys.Wolfram do
 
   defp fetch_xml(query) do
     {:ok, {_,_,body}} = :httpc.request(String.to_charlist(url(query)))
+
+    body
   end
 
   def url(input) do
