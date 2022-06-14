@@ -5,11 +5,13 @@ defmodule Rumbl.AccountsFixtures do
   """
 
   def unique_user_email, do: "user#{System.unique_integer()}@example.com"
+  def random_username, do: for _ <- 1..10, into: "", do: <<Enum.random('0123456789abcdef')>>
   def valid_user_password, do: "hello world!"
 
   def valid_user_attributes(attrs \\ %{}) do
     Enum.into(attrs, %{
       email: unique_user_email(),
+      username: random_username(),
       password: valid_user_password()
     })
   end
@@ -18,7 +20,7 @@ defmodule Rumbl.AccountsFixtures do
     {:ok, user} =
       attrs
       |> valid_user_attributes()
-      |> Rumbl.Accounts.register_user()
+      |> Rumbl.Accounts.create_user()
 
     user
   end
